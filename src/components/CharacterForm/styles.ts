@@ -19,32 +19,27 @@ export const CharacterNum = styled.Text`
   font-family: "RubikMonoOne-Regular";
   font-size: 24px;
   color: #FFF;
+  text-align: center;
 `;
 
 export const CharacterName = styled.View`
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  margin: 32px auto 32px 24px;
+  width: 250px;
 `;
 
 export const CharacterNameText = styled.Text`
   font-family: "Roboto-Bold";
   font-size: 22px;
-  margin: 32px auto 32px 24px;
-  color: #FFF;
-`;
-
-export const CharacterNameinput = styled.TextInput`
-  width: 70%;
-  font-size: 18px;
-  font-family: "Roboto-Bold";
   color: #FFF;
 `;
 
 export const Divisor = styled.View`
-  width: 90%;
+  width: 290px;
   height: 3px;
   background: #F9F3F3;
+  align-self: center;
 `;
 
 export const Hints = styled.View``;
