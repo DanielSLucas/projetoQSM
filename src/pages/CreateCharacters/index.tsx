@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { ScrollView } from 'react-native';
 
 import {
@@ -10,9 +10,15 @@ import {
 } from './styles';
 
 import CharacterForm from '../../components/CharacterForm';
+import { useNavigation } from '@react-navigation/native';
 
 const CreateCharacters: React.FC = () => {
-  const [numOfCharacters, setNumOfCharacters] = useState(1);
+
+  const navigation = useNavigation();
+
+  const handlePress = useCallback(() => {
+    navigation.navigate('Game');
+  }, []);
 
   return (
     <>
@@ -20,7 +26,6 @@ const CreateCharacters: React.FC = () => {
         <ScrollView>
           <ScreenTitle>CRIAÇÃO DE PERSONAGENS</ScreenTitle>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            { }
 
             <CharacterForm number={1}/>
             <CharacterForm number={2}/>
@@ -31,7 +36,7 @@ const CreateCharacters: React.FC = () => {
                 <ButtonText>Adicionar personagem</ButtonText>
               </Button> */}
 
-              <Button>
+              <Button onPress={handlePress}>
                 <ButtonText>Jogar</ButtonText>
               </Button>
             </ButtonsContainer>
