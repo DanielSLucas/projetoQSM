@@ -21,6 +21,7 @@ import {
 import Input from '../input';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import { useCharacter } from '../../hooks/character';
 
 interface CreateCharacterFormData {
   characterName: string;
@@ -38,12 +39,15 @@ interface Props  {
 const CharacterForm: React.FC<Props> = ({ number }) => {
   const formRef = useRef<FormHandles>(null);
 
+  const { addCharacter, characters } = useCharacter();
+
   const handleSubmit = useCallback((data: CreateCharacterFormData) => {
-    console.log({
+    const newCharacter = {
       id: number,
       ...data,
-    });
+    };
 
+    addCharacter(newCharacter);
 
   }, []);
 

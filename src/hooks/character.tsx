@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState, useContext } from 'react';
+import React, { createContext, useCallback, useState, useContext } from 'react';
 
 interface Character {
   id: number;
@@ -26,27 +26,35 @@ export const CharacterProvider: React.FC = ({ children }) => {
 
   const addCharacter = useCallback((character: Character) => {
 
-    const findCharacter = data.characters.filter( arrayItem => arrayItem.id === character.id);
-    const characterExists = findCharacter.length !== 0;
+    if (data.characters){
+      const findCharacter = data.characters.filter( arrayItem => arrayItem.id === character.id);
+      const characterExists = findCharacter.length !== 0;
 
-    if (characterExists) {
-      const filteredCharacters = data.characters.filter( arrayItem => arrayItem.id !== character.id);
+      if (characterExists) {
+        const filteredCharacters = data.characters.filter( arrayItem => arrayItem.id !== character.id);
+        setData({
+          characters: [
+            character,
+            ...filteredCharacters,
+          ],
+        });
+      }
+
       setData({
         characters: [
+          ...data.characters,
           character,
-          ...filteredCharacters,
         ],
       });
     }
 
     setData({
       characters: [
-        ...data.characters,
         character,
       ],
     });
 
-
+    console.log(data);
   }, []);
 
 
