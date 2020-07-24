@@ -39,7 +39,10 @@ const CharacterForm: React.FC<Props> = ({ number }) => {
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback((data: CreateCharacterFormData) => {
-    console.log(data);
+    console.log({
+      id: number,
+      ...data,
+    });
 
 
   }, []);
