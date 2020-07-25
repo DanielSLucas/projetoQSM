@@ -4,14 +4,15 @@ import { ScrollView } from 'react-native';
 import {
   Container,
   ScreenTitle,
-  CharacterContainer,
-  CharacterName,
-  Hints,
-  HintSquare,
-  HintText,
 } from './styles';
 
+import Character from '../../components/Character';
+
+import { useCharacter } from '../../hooks/character';
+
 const Game: React.FC = () => {
+  const { characters } = useCharacter();
+
   return (
     <Container>
       <ScrollView style={{flex: 1}}>
@@ -19,26 +20,9 @@ const Game: React.FC = () => {
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flex: 1}}>
 
-          <CharacterContainer>
-            <CharacterName>Geralt de Rívia</CharacterName>
-            <Hints>
-              <HintSquare>
-                <HintText>1</HintText>
-              </HintSquare>
-              <HintSquare>
-                <HintText>2</HintText>
-              </HintSquare>
-              <HintSquare>
-                <HintText>3</HintText>
-              </HintSquare>
-              <HintSquare>
-                <HintText>4</HintText>
-              </HintSquare>
-              <HintSquare>
-                <HintText>5</HintText>
-              </HintSquare>
-            </Hints>
-          </CharacterContainer>
+        {characters.map( arrayItem => (
+          <Character key={arrayItem.id} character={arrayItem} />
+        ))}
 
         </ScrollView>
 

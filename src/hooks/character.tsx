@@ -26,35 +26,35 @@ export const CharacterProvider: React.FC = ({ children }) => {
 
   const addCharacter = useCallback((character: Character) => {
 
-    if (data.characters){
-      const findCharacter = data.characters.filter( arrayItem => arrayItem.id === character.id);
-      const characterExists = findCharacter.length !== 0;
-
-      if (characterExists) {
-        const filteredCharacters = data.characters.filter( arrayItem => arrayItem.id !== character.id);
-        setData({
-          characters: [
-            character,
-            ...filteredCharacters,
-          ],
-        });
-      }
-
-      setData({
+    if (!data.characters) {
+      return setData({
         characters: [
-          ...data.characters,
           character,
         ],
       });
     }
 
-    setData({
-      characters: [
-        character,
-      ],
-    });
+    const characterIndex = data.characters.findIndex( arrayItem => arrayItem.id === character.id);
+    const characterExists = characterIndex !== -1;
 
-    console.log(data);
+    if (characterExists) {
+      const filteredCharacters = data.characters.filter( arrayItem => arrayItem.id !== character.id);
+
+      return setData({
+        characters: [
+          ...filteredCharacters,
+          character,
+        ]
+      });
+    }
+
+    return setData({
+      characters: [
+        ...data.characters,
+        character,
+      ]
+    })
+
   }, []);
 
 
