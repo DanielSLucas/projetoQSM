@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView } from 'react-native';
 
 import {
@@ -12,6 +12,10 @@ import { useCharacter } from '../../hooks/character';
 
 const Game: React.FC = () => {
   const { characters } = useCharacter();
+
+  useEffect(() => {
+    console.log(characters)
+  }, []);
 
   return (
     <Container>

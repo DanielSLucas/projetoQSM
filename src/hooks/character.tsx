@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
+import { EventSubscriptionVendor } from 'react-native';
 
 interface Character {
   id: number;
@@ -22,33 +23,14 @@ interface Data {
 const CharacterContext = createContext<CharacterContextData>({} as CharacterContextData);
 
 export const CharacterProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<Data>({} as Data);
+  const [data, setData] = useState<Data>({
+    characters: [
+      {"characterName": "Teste1", "hint1": "teste1", "hint2": "", "hint3": "", "hint4": "", "hint5": "", "id": 1},
+    ]
+  });
 
   const addCharacter = useCallback((character: Character) => {
-
-    if (!data.characters) {
-      return setData({
-        characters: [
-          character,
-        ],
-      });
-    }
-
-    const characterIndex = data.characters.findIndex( arrayItem => arrayItem.id === character.id);
-    const characterExists = characterIndex !== -1;
-
-    if (characterExists) {
-      const filteredCharacters = data.characters.filter( arrayItem => arrayItem.id !== character.id);
-
-      return setData({
-        characters: [
-          ...filteredCharacters,
-          character,
-        ]
-      });
-    }
-
-    return setData({
+    setData({
       characters: [
         ...data.characters,
         character,
