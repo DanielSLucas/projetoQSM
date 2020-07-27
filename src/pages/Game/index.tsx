@@ -13,10 +13,6 @@ import { useCharacter } from '../../hooks/character';
 const Game: React.FC = () => {
   const { characters } = useCharacter();
 
-  useEffect(() => {
-    console.log(characters)
-  }, []);
-
   return (
     <Container>
       <ScrollView style={{flex: 1}}>

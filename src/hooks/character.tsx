@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 interface Character {
   id: number;
+  score: number;
   characterName: string;
   hint1: string;
   hint2: string;
@@ -19,6 +20,7 @@ interface CharacterContextData {
 
 interface Data {
   characters: Character[];
+  totalScore: number;
 }
 
 const CharacterContext = createContext<CharacterContextData>({} as CharacterContextData);
@@ -30,24 +32,45 @@ export const CharacterProvider: React.FC = ({ children }) => {
     const characters = await AsyncStorage.getItem('@QSM:Characters');
 
     if (characters) {
-      const parsedCharacters = JSON.parse(characters);
+      const parsedCharacters: Character[] = JSON.parse(characters);
 
-      const newCharactersArray  = [ ...parsedCharacters, character];
+      const findCharacter = parsedCharacters.findIndex( arrayItem => arrayItem.id === character.id);
+      const characterExists = findCharacter !== -1;
 
-      await AsyncStorage.removeItem('@QSM:Characters');
-      await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(newCharactersArray));
+      if (characterExists) {
+        const filteredCharacters = parsedCharacters.filter( arrayItem => arrayItem.id !== character.id);
+        const updatedCharactersArray = [...filteredCharacters, character];
 
-      setData({
-        characters: [
-          ...newCharactersArray
-        ]
-      });
+        await AsyncStorage.removeItem('@QSM:Characters');
+        await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(updatedCharactersArray));
+
+        setData({
+          characters: [
+            ...updatedCharactersArray
+          ],
+          totalScore: data.totalScore,
+        });
+      } else {
+        const newCharactersArray  = [ ...parsedCharacters, character];
+
+        await AsyncStorage.removeItem('@QSM:Characters');
+        await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(newCharactersArray));
+
+        setData({
+          characters: [
+            ...newCharactersArray
+          ],
+          totalScore: data.totalScore,
+        });
+      }
+
 
     } else {
       setData({
         characters: [
           character,
-        ]
+        ],
+        totalScore: data.totalScore,
       });
 
       await AsyncStorage.setItem('@QSM:Characters', JSON.stringify([character]));

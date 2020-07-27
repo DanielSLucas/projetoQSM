@@ -45,6 +45,7 @@ const CharacterForm: React.FC<Props> = ({ number }) => {
     const newCharacter = {
       id: number,
       ...data,
+      score: 5,
     };
 
     addCharacter(newCharacter);

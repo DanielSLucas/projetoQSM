@@ -36,6 +36,8 @@ const Character: React.FC<Props> = ({ character }) => {
   const [showHint4,setShowHint4] = useState(false);
   const [showHint5,setShowHint5] = useState(false);
 
+  const [score, setScore] = useState(6);
+
   const handleHintPress = useCallback((hintNum: number) => {
     switch (hintNum) {
       case 1:
@@ -54,9 +56,9 @@ const Character: React.FC<Props> = ({ character }) => {
         setShowHint5(true);
         break;
       default:
-        return;
+        break;
     }
-
+    setScore(state => state -1);
   }, [])
 
   return (
@@ -126,7 +128,7 @@ const Character: React.FC<Props> = ({ character }) => {
       </Hints>
 
       <ButtonsGroup>
-        <Button>
+        <Button onPress={() => console.log(score)}>
           <Icon name="x" size={64} color="#FFF"/>
         </Button>
 

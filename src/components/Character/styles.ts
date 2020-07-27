@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 export const CharacterContainer = styled.View`
-  margin: 30px;
+  margin:  0 30px;
   width: 340px;
   flex: 1;
   justify-content: center;
@@ -43,18 +43,17 @@ export const Line = styled.View`
 export const Hints = styled.View`
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
-  align-content: space-around;
+  justify-content: space-evenly;
 `;
 
 export const HintSquare = styled.TouchableOpacity`
-  height: 140px;
-  width: 140px;
+  height: 120px;
+  width: 120px;
   background: #1ABC9C;
   border: 1.5px solid #FFF;
   border-radius: 15px;
 
-  margin-top: 15px;
+  margin: 15px 10px;
 
   justify-content: center;
   align-items: center;
@@ -68,7 +67,7 @@ export const HintNum = styled.Text`
 
 export const ButtonsGroup = styled.View`
   flex-direction: row;
-  margin-top: 90px;
+  margin-top: 24px;
 `;
 
 export const Button = styled.TouchableOpacity`
