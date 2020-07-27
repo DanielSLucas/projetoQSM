@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 
 export const CharacterContainer = styled.View`
   margin: 30px;
@@ -17,6 +18,7 @@ export const CharacterName = styled.Text`
 
 export const HintsTitle = styled.Text`
   margin-top: 10px;
+  margin-bottom: 20px;
   color: #FFF;
   font-size: 22px;
   font-family: "RubikMonoOne-Regular";
@@ -28,7 +30,7 @@ export const HintContainer = styled.View`
 
 export const HintText = styled.Text`
   color: #FFF;
-  font-size: 18px;
+  font-size: 24px;
   font-family: "Roboto-Bold";
   padding:0;
 `;
@@ -45,7 +47,7 @@ export const Hints = styled.View`
   align-content: space-around;
 `;
 
-export const HintSquare = styled.View`
+export const HintSquare = styled.TouchableOpacity`
   height: 140px;
   width: 140px;
   background: #1ABC9C;
@@ -64,3 +66,13 @@ export const HintNum = styled.Text`
   font-family: "RubikMonoOne-Regular";
 `;
 
+export const ButtonsGroup = styled.View`
+  flex-direction: row;
+  margin-top: 90px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  margin: 0px 20px;
+`;
+
+export const Icon = styled(FeatherIcon)``;
