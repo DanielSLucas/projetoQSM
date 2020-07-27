@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, ComponentProps } from 'react';
+import React, { useRef, useCallback, ComponentProps, ReactPropTypes } from 'react';
 
 import {
   CharacterContainer,
@@ -32,18 +32,18 @@ interface CreateCharacterFormData {
   hint5: string;
 }
 
-interface Props  {
-  number: number;
+interface Props {
+  id: number;
 }
 
-const CharacterForm: React.FC<Props> = ({ number }) => {
+const CharacterForm: React.FC<Props> = ({ id }) => {
   const formRef = useRef<FormHandles>(null);
 
-  const { addCharacter, characters } = useCharacter();
+  const { addCharacter } = useCharacter();
 
   const handleSubmit = useCallback((data: CreateCharacterFormData) => {
     const newCharacter = {
-      id: number,
+      id,
       ...data,
       score: 5,
     };
@@ -55,7 +55,7 @@ const CharacterForm: React.FC<Props> = ({ number }) => {
   return (
     <CharacterContainer>
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <CharacterNum>PERSONAGEM {number}</CharacterNum>
+        <CharacterNum>PERSONAGEM {id}</CharacterNum>
         <CharacterName>
           <CharacterNameText>Nome: </CharacterNameText>
           <Input name="characterName" />

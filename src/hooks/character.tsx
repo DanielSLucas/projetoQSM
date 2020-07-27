@@ -14,7 +14,9 @@ interface Character {
 
 interface CharacterContextData {
   characters: Character[];
+  score: number;
   addCharacter(character: Character): Promise<void>;
+  setScore(score: number, id: number): Promise<void>;
   removeAllCharacters(): Promise<void>;
 }
 
@@ -77,6 +79,32 @@ export const CharacterProvider: React.FC = ({ children }) => {
     }
   }, []);
 
+  const setScore = useCallback(async (score: number, id: number) => {
+    const characters = await AsyncStorage.getItem('@QSM:Characters');
+
+    if (characters) {
+      let parsedCharacters: Character[] = JSON.parse(characters);
+      const findCharacterIndex = parsedCharacters.findIndex(character => character.id === id);
+
+      if (findCharacterIndex !== -1) {
+        parsedCharacters[findCharacterIndex].score = score;
+      }
+
+      await AsyncStorage.removeItem('@QSM:Characters');
+      await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(parsedCharacters));
+
+      const total = parsedCharacters.reduce((scoreTotal, character) => {
+        return scoreTotal + character.score;
+      }, 0);
+
+      setData({
+        characters: parsedCharacters,
+        totalScore: total,
+      });
+    }
+
+  }, []);
+
   const removeAllCharacters = useCallback(async () => {
     await AsyncStorage.removeItem('@QSM:Characters');
     setData({} as Data);
@@ -84,7 +112,9 @@ export const CharacterProvider: React.FC = ({ children }) => {
 
 
   return (
-    <CharacterContext.Provider value={{ characters: data.characters, addCharacter, removeAllCharacters}} >
+    <CharacterContext.Provider
+      value={{ characters: data.characters, score: data.totalScore, addCharacter, setScore, removeAllCharacters}}
+    >
       {children}
     </CharacterContext.Provider>
   );

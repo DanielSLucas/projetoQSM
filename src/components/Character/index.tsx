@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, ReactPropTypes } from 'react';
 
 import {
   CharacterContainer,
@@ -36,7 +36,7 @@ const Character: React.FC<Props> = ({ character }) => {
   const [showHint4,setShowHint4] = useState(false);
   const [showHint5,setShowHint5] = useState(false);
 
-  const [score, setScore] = useState(6);
+  const [localscore, setLocalScore] = useState(6);
 
   const handleHintPress = useCallback((hintNum: number) => {
     switch (hintNum) {
@@ -58,8 +58,12 @@ const Character: React.FC<Props> = ({ character }) => {
       default:
         break;
     }
-    setScore(state => state -1);
+    setLocalScore(state => state -1);
   }, [])
+
+  const handleWrongPress = useCallback(() =>{}, []);
+
+  const handleRightPress = useCallback(() =>{}, []);
 
   return (
     <CharacterContainer>
@@ -128,11 +132,11 @@ const Character: React.FC<Props> = ({ character }) => {
       </Hints>
 
       <ButtonsGroup>
-        <Button onPress={() => console.log(score)}>
+        <Button onPress={handleWrongPress}>
           <Icon name="x" size={64} color="#FFF"/>
         </Button>
 
-        <Button>
+        <Button onPress={handleRightPress}>
           <Icon name="check" size={64} color="#FFF"/>
         </Button>
       </ButtonsGroup>

@@ -20,8 +20,8 @@ const Game: React.FC = () => {
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flex: 1}}>
 
-        {characters.map( arrayItem => (
-          <Character key={arrayItem.id} character={arrayItem} />
+        {characters.map( character => (
+          <Character key={character.id} character={character} />
         ))}
 
         </ScrollView>
