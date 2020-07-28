@@ -27,9 +27,9 @@ const CreateCharacters: React.FC = () => {
           <ScreenTitle>CRIAÇÃO DE PERSONAGENS</ScreenTitle>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
 
-            <CharacterForm number={1}/>
-            <CharacterForm number={2}/>
-            <CharacterForm number={3}/>
+            <CharacterForm id={1}/>
+            <CharacterForm id={2}/>
+            <CharacterForm id={3}/>
 
             <ButtonsContainer>
               {/* <Button>
