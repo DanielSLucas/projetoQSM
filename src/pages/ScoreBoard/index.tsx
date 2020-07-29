@@ -14,12 +14,11 @@ import { useCharacter } from '../../hooks/character';
 import { useNavigation } from '@react-navigation/native';
 
 const ScoreBoard: React.FC = () => {
-  const { characters, score, removeAllCharacters } = useCharacter();
-  const navigation = useNavigation();
+  const { characters, score } = useCharacter();
+  const { navigate } = useNavigation();
 
   const handlePress = useCallback(() => {
-    removeAllCharacters();
-    navigation.navigate('CreateCharacters');
+    navigate('Main')
   }, []);
 
   return (
