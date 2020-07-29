@@ -43,7 +43,7 @@ export const CharacterScore = styled.Text`
   text-align: center;
 `;
 
-export const Button = styled.View`
+export const Button = styled.TouchableOpacity`
   width: 250px;
   height: 64px;
   margin: 10px;

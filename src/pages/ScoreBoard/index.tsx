@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import {
   Container,
@@ -10,23 +10,34 @@ import {
   Button,
   ButtonText,
 } from './styles';
+import { useCharacter } from '../../hooks/character';
+import { useNavigation } from '@react-navigation/native';
 
 const ScoreBoard: React.FC = () => {
+  const { characters, score, removeAllCharacters } = useCharacter();
+  const navigation = useNavigation();
+
+  const handlePress = useCallback(() => {
+    removeAllCharacters();
+    navigation.navigate('CreateCharacters');
+  }, []);
+
   return (
     <Container>
       <ScreenTitle>PONTOS</ScreenTitle>
 
-      <ScoreText>12</ScoreText>
+      <ScoreText>{score}</ScoreText>
 
       <ScoreDetails>
         <ScoreDetailsText>PERSONAGENS</ScoreDetailsText>
 
-        <CharacterScore>1 - Personagem 1 ....... 5</CharacterScore>
-        <CharacterScore>2 - Personagem 2 ....... 4</CharacterScore>
-        <CharacterScore>3 - Personagem 3 ....... 3</CharacterScore>
+        {characters.map(character => (
+          <CharacterScore key={character.id}>{character.id} - {character.characterName} ....... {character.score}</CharacterScore>
+        ))}
+
       </ScoreDetails>
 
-      <Button>
+      <Button onPress={handlePress}>
         <ButtonText>JOGAR NOVAMENTE</ButtonText>
       </Button>
     </Container>

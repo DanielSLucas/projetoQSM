@@ -9,6 +9,30 @@ export const CharacterContainer = styled.View`
   align-items: center;
 `;
 
+export const ScoreContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+`;
+
+export const ScoreTitle = styled.Text`
+  font-family: "RubikMonoOne-Regular";
+  font-size: 48px;
+  text-align: center;
+  color: #FFF;
+  margin-top: 0px;
+`;
+
+
+export const ScoreText = styled.Text`
+  font-family: "RubikMonoOne-Regular";
+  font-size: 124px;
+  text-align: center;
+  color: #FFF;
+  margin-top: 20px;
+`;
+
 export const CharacterName = styled.Text`
   color: #FFF;
   font-size: 24px;
