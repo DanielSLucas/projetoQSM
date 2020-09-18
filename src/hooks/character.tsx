@@ -25,73 +25,88 @@ interface Data {
   totalScore: number;
 }
 
-const CharacterContext = createContext<CharacterContextData>({} as CharacterContextData);
+const CharacterContext = createContext<CharacterContextData>(
+  {} as CharacterContextData
+);
 
 export const CharacterProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<Data>({} as Data);
 
-  const addCharacter = useCallback(async (character: Character) => {
-    const characters = await AsyncStorage.getItem('@QSM:Characters');
+  const addCharacter = useCallback(
+    async (character: Character) => {
+      const characters = await AsyncStorage.getItem('@QSM:Characters');
 
-    if (characters) {
-      const parsedCharacters: Character[] = JSON.parse(characters);
+      if (characters) {
+        const parsedCharacters: Character[] = JSON.parse(characters);
 
-      const findCharacter = parsedCharacters.findIndex( arrayItem => arrayItem.id === character.id);
-      const characterExists = findCharacter !== -1;
+        const findCharacter = parsedCharacters.findIndex(
+          (arrayItem) => arrayItem.id === character.id
+        );
+        const characterExists = findCharacter !== -1;
 
-      if (characterExists) {
-        const filteredCharacters = parsedCharacters.filter( arrayItem => arrayItem.id !== character.id);
-        const updatedCharactersArray = [...filteredCharacters, character];
+        if (characterExists) {
+          const filteredCharacters = parsedCharacters.filter(
+            (arrayItem) => arrayItem.id !== character.id
+          );
+          const updatedCharactersArray = [...filteredCharacters, character];
 
-        await AsyncStorage.removeItem('@QSM:Characters');
-        await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(updatedCharactersArray));
+          await AsyncStorage.removeItem('@QSM:Characters');
+          await AsyncStorage.setItem(
+            '@QSM:Characters',
+            JSON.stringify(updatedCharactersArray)
+          );
 
-        setData({
-          characters: [
-            ...updatedCharactersArray
-          ],
-          totalScore: data.totalScore,
-        });
+          setData({
+            characters: [...updatedCharactersArray],
+            totalScore: data.totalScore,
+          });
+        } else {
+          const newCharactersArray = [...parsedCharacters, character];
+
+          await AsyncStorage.removeItem('@QSM:Characters');
+          await AsyncStorage.setItem(
+            '@QSM:Characters',
+            JSON.stringify(newCharactersArray)
+          );
+
+          setData({
+            characters: [...newCharactersArray],
+            totalScore: data.totalScore,
+          });
+        }
       } else {
-        const newCharactersArray  = [ ...parsedCharacters, character];
-
-        await AsyncStorage.removeItem('@QSM:Characters');
-        await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(newCharactersArray));
-
         setData({
-          characters: [
-            ...newCharactersArray
-          ],
+          characters: [character],
           totalScore: data.totalScore,
         });
+
+        await AsyncStorage.setItem(
+          '@QSM:Characters',
+          JSON.stringify([character])
+        );
       }
-
-
-    } else {
-      setData({
-        characters: [
-          character,
-        ],
-        totalScore: data.totalScore,
-      });
-
-      await AsyncStorage.setItem('@QSM:Characters', JSON.stringify([character]));
-    }
-  }, []);
+    },
+    [data.totalScore]
+  );
 
   const setScore = useCallback(async (score: number, id: number) => {
     const characters = await AsyncStorage.getItem('@QSM:Characters');
 
     if (characters) {
-      let parsedCharacters: Character[] = JSON.parse(characters);
-      const findCharacterIndex = parsedCharacters.findIndex(character => character.id === id);
+      const parsedCharacters: Character[] = JSON.parse(characters);
+      const findCharacterIndex = parsedCharacters.findIndex(
+        (character) => character.id === id
+      );
 
       if (findCharacterIndex !== -1) {
         parsedCharacters[findCharacterIndex].score = score;
       }
 
       await AsyncStorage.removeItem('@QSM:Characters');
-      await AsyncStorage.setItem('@QSM:Characters', JSON.stringify(parsedCharacters));
+      await AsyncStorage.setItem(
+        '@QSM:Characters',
+        JSON.stringify(parsedCharacters)
+      );
 
       const total = parsedCharacters.reduce((scoreTotal, character) => {
         return scoreTotal + character.score;
@@ -102,7 +117,6 @@ export const CharacterProvider: React.FC = ({ children }) => {
         totalScore: total,
       });
     }
-
   }, []);
 
   const removeAllCharacters = useCallback(async () => {
@@ -110,15 +124,20 @@ export const CharacterProvider: React.FC = ({ children }) => {
     setData({} as Data);
   }, []);
 
-
   return (
     <CharacterContext.Provider
-      value={{ characters: data.characters, score: data.totalScore, addCharacter, setScore, removeAllCharacters}}
+      value={{
+        characters: data.characters,
+        score: data.totalScore,
+        addCharacter,
+        setScore,
+        removeAllCharacters,
+      }}
     >
       {children}
     </CharacterContext.Provider>
   );
-}
+};
 
 export function useCharacter(): CharacterContextData {
   const context = useContext(CharacterContext);

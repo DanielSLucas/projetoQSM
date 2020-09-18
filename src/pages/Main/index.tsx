@@ -12,7 +12,7 @@ const Main: React.FC = () => {
   const handlePress = useCallback(() => {
     removeAllCharacters();
     navigation.navigate('CreateCharacters');
-  }, []);
+  }, [navigation, removeAllCharacters]);
 
   return (
     <Container>

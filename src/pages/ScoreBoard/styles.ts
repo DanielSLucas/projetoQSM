@@ -7,18 +7,18 @@ export const Container = styled.View`
 `;
 
 export const ScreenTitle = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 48px;
   text-align: center;
-  color: #FFF;
+  color: #fff;
   margin-top: 0px;
 `;
 
 export const ScoreText = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 124px;
   text-align: center;
-  color: #FFF;
+  color: #fff;
   margin-top: 20px;
 `;
 
@@ -28,17 +28,17 @@ export const ScoreDetails = styled.View`
 `;
 
 export const ScoreDetailsText = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 22px;
   text-align: center;
-  color: #FFF;
+  color: #fff;
   margin-bottom: 10px;
 `;
 
 export const CharacterScore = styled.Text`
-  font-family: "Roboto-Bold";
+  font-family: 'Roboto-Bold';
   font-size: 24px;
-  color: #FFF;
+  color: #fff;
   margin: 5px;
   text-align: center;
 `;
@@ -49,8 +49,8 @@ export const Button = styled.TouchableOpacity`
   margin: 10px;
   margin-top: 80px;
 
-  background: #1ABC9C;
-  border: 1.5px solid #FFF;
+  background: #1abc9c;
+  border: 1.5px solid #fff;
   border-radius: 16px;
 
   justify-content: center;
@@ -58,8 +58,8 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: #FFF;
-  font-family: "RubikMonoOne-Regular";
+  color: #fff;
+  font-family: 'RubikMonoOne-Regular';
   font-size: 20px;
   text-align: center;
 `;

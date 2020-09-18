@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -7,10 +7,10 @@ export const Container = styled.View`
 `;
 
 export const ScreenTitle = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 36px;
   text-align: center;
-  color: #FFF;
+  color: #fff;
   margin-top: 20px;
 `;
 
@@ -28,8 +28,8 @@ export const Button = styled.TouchableOpacity`
   height: 64px;
   margin: 10px;
 
-  background: #1ABC9C;
-  border: 1.5px solid #FFF;
+  background: #1abc9c;
+  border: 1.5px solid #fff;
   border-radius: 16px;
 
   justify-content: center;
@@ -37,8 +37,8 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: #FFF;
-  font-family: "RubikMonoOne-Regular";
+  color: #fff;
+  font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
   text-align: center;
 `;

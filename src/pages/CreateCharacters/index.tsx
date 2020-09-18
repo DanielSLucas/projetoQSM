@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { ScrollView } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   ScreenTitle,
@@ -10,10 +11,8 @@ import {
 } from './styles';
 
 import CharacterForm from '../../components/CharacterForm';
-import { useNavigation } from '@react-navigation/native';
 
 const CreateCharacters: React.FC = () => {
-
   const navigation = useNavigation();
 
   const handlePress = useCallback(() => {
@@ -26,10 +25,9 @@ const CreateCharacters: React.FC = () => {
         <ScrollView>
           <ScreenTitle>CRIAÇÃO DE PERSONAGENS</ScreenTitle>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-
-            <CharacterForm id={1}/>
-            <CharacterForm id={2}/>
-            <CharacterForm id={3}/>
+            <CharacterForm id={1} />
+            <CharacterForm id={2} />
+            <CharacterForm id={3} />
 
             <ButtonsContainer>
               {/* <Button>
@@ -40,7 +38,6 @@ const CreateCharacters: React.FC = () => {
                 <ButtonText>Jogar</ButtonText>
               </Button>
             </ButtonsContainer>
-
           </ScrollView>
         </ScrollView>
       </Container>
