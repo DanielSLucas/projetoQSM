@@ -17,7 +17,7 @@ const CreateCharacters: React.FC = () => {
 
   const handlePress = useCallback(() => {
     navigation.navigate('Game');
-  }, []);
+  }, [navigation]);
 
   return (
     <>
@@ -30,9 +30,9 @@ const CreateCharacters: React.FC = () => {
             <CharacterForm id={3} />
 
             <ButtonsContainer>
-              {/* <Button>
-                <ButtonText>Adicionar personagem</ButtonText>
-              </Button> */}
+              <Button>
+                <ButtonText>+ personagem</ButtonText>
+              </Button>
 
               <Button onPress={handlePress}>
                 <ButtonText>Jogar</ButtonText>

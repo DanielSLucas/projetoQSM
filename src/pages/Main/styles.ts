@@ -7,6 +7,7 @@ export const Container = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
+  margin-top: 208px;
   width: 232px;
   height: 64px;
 

@@ -7,8 +7,8 @@ export const CharacterContainer = styled.View`
   margin-right: 30px;
   width: 340px;
   height: 540px;
-  background: #1ABC9C;
-  border: 1.5px solid #FFF;
+  background: #1abc9c;
+  border: 1.5px solid #fff;
   border-radius: 19px;
 
   justify-content: center;
@@ -16,38 +16,25 @@ export const CharacterContainer = styled.View`
 `;
 
 export const CharacterNum = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
 `;
 
 export const CharacterName = styled.View`
-  flex-direction: row;
   justify-content: center;
-  margin: 32px auto 32px 24px;
+  align-items: center;
+  margin: 48px auto 16px auto;
   width: 250px;
-`;
-
-export const CharacterNameText = styled.Text`
-  font-family: "Roboto-Bold";
-  font-size: 22px;
-  color: #FFF;
-`;
-
-export const Divisor = styled.View`
-  width: 290px;
-  height: 3px;
-  background: #F9F3F3;
-  align-self: center;
 `;
 
 export const Hints = styled.View``;
 
 export const HintsTitle = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
-  color: #FFF;
+  color: #fff;
   margin-top: 18px;
   margin-bottom: 16px;
   text-align: center;
@@ -59,11 +46,10 @@ export const Hint = styled.View`
 `;
 
 export const HintNum = styled.Text`
-  font-family: "Roboto-Bold";
+  font-family: 'Roboto-Bold';
   font-size: 22px;
-  color: #FFF;
+  color: #fff;
 `;
-
 
 export const CurrentPageContainer = styled.View`
   flex-direction: row;
@@ -75,9 +61,9 @@ export const CurrentPageContainer = styled.View`
 export const ArrowButton = styled.TouchableOpacity``;
 
 export const PageNum = styled.Text`
-  font-family: "RubikMonoOne-Regular";
+  font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
-  color: #FFF;
+  color: #fff;
 `;
 
 export const Icon = styled(FeatherIcon)``;
@@ -85,7 +71,7 @@ export const Icon = styled(FeatherIcon)``;
 export const Button = styled.TouchableOpacity``;
 
 export const ButtonText = styled.Text`
-  color: #FFF;
-  font-family: "RubikMonoOne-Regular";
+  color: #fff;
+  font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
 `;

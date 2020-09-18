@@ -1,26 +1,21 @@
-import React, { useRef, useCallback, ComponentProps, ReactPropTypes } from 'react';
+import React, { useRef, useCallback } from 'react';
 
+import { Form } from '@unform/mobile';
+import { FormHandles } from '@unform/core';
 import {
   CharacterContainer,
   CharacterNum,
   CharacterName,
-  CharacterNameText,
-  Divisor,
   Hints,
   HintsTitle,
   Hint,
   HintNum,
   CurrentPageContainer,
-  ArrowButton,
-  PageNum,
-  Icon,
   Button,
   ButtonText,
 } from './styles';
 
 import Input from '../input';
-import { Form } from '@unform/mobile';
-import { FormHandles } from '@unform/core';
 import { useCharacter } from '../../hooks/character';
 
 interface CreateCharacterFormData {
@@ -49,7 +44,6 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
     };
 
     addCharacter(newCharacter);
-
   }, []);
 
   return (
@@ -57,11 +51,8 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
       <Form ref={formRef} onSubmit={handleSubmit}>
         <CharacterNum>PERSONAGEM {id}</CharacterNum>
         <CharacterName>
-          <CharacterNameText>Nome: </CharacterNameText>
-          <Input name="characterName" />
+          <Input dashed name="characterName" />
         </CharacterName>
-
-        <Divisor/>
 
         <Hints>
           <HintsTitle>DICAS</HintsTitle>
@@ -85,11 +76,9 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
             <HintNum>5 - </HintNum>
             <Input name="hint5" />
           </Hint>
-
         </Hints>
 
         <CurrentPageContainer>
-
           <Button
             onPress={() => {
               formRef.current?.submitForm();
@@ -106,6 +95,6 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
       </Form>
     </CharacterContainer>
   );
-}
+};
 
 export default CharacterForm;

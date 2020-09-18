@@ -1,18 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 
-import { Container, TextInput, Line } from './styles';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
+import {
+  Container,
+  TextInput,
+  Line,
+  DashedLineContainer,
+  LittleLine,
+} from './styles';
 
 interface InputProps extends TextInputProps {
   name: string;
+  dashed?: boolean;
 }
 
 interface InputValueReference {
   value: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, ...rest }) => {
+const Input: React.FC<InputProps> = ({ name, dashed = false, ...rest }) => {
   const inputElementRef = useRef<any>(null);
 
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
@@ -28,14 +35,13 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
         inputElementRef.current.setNativeProps({ text: value });
       },
       clearValue() {
-        inputValueRef.current.value = '',
-        inputElementRef.current.clear();
-      }
+        (inputValueRef.current.value = ''), inputElementRef.current.clear();
+      },
     });
   }, [fieldName, registerField]);
 
   return (
-    <Container>
+    <Container style={{ borderStyle: 'dotted' }}>
       <TextInput
         ref={inputElementRef}
         defaultValue={defaultValue}
@@ -44,7 +50,20 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
         }}
         {...rest}
       />
-      <Line />
+
+      {!dashed ? (
+        <Line />
+      ) : (
+        <DashedLineContainer>
+          <LittleLine />
+          <LittleLine />
+          <LittleLine />
+          <LittleLine />
+          <LittleLine />
+          <LittleLine />
+          <LittleLine />
+        </DashedLineContainer>
+      )}
     </Container>
   );
 };
