@@ -28,10 +28,9 @@ const CreateCharacters: React.FC = () => {
   }, [characters]);
 
   const characterFormArray = useMemo(() => {
-    const array = characters.map((character) => (
+    return characters.map((character) => (
       <CharacterForm key={character} id={character} />
     ));
-    return array;
   }, [characters]);
 
   return (
@@ -46,10 +45,10 @@ const CreateCharacters: React.FC = () => {
           activeDotColor="#FFF"
           style={{ height: 630 }}
         >
+          {/* {characterFormArray} */}
           <CharacterForm id={1} />
           <CharacterForm id={2} />
           <CharacterForm id={3} />
-
           <ButtonsContainer>
             <Button onPress={handleAddCharacter}>
               <ButtonText>+ personagem</ButtonText>
@@ -60,6 +59,19 @@ const CreateCharacters: React.FC = () => {
             </Button>
           </ButtonsContainer>
         </Swiper>
+        {/* <ScrollView horizontal>
+          {characterFormArray}
+
+          <ButtonsContainer>
+            <Button onPress={handleAddCharacter}>
+              <ButtonText>+ personagem</ButtonText>
+            </Button>
+
+            <Button onPress={handlePress}>
+              <ButtonText>Jogar</ButtonText>
+            </Button>
+          </ButtonsContainer>
+        </ScrollView> */}
       </ScrollView>
     </Container>
   );

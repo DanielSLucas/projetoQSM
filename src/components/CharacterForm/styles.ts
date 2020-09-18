@@ -13,6 +13,7 @@ export const CharacterContainer = styled.View`
 
   justify-content: center;
   align-items: center;
+  align-self: center;
 `;
 
 export const CharacterNum = styled.Text`
