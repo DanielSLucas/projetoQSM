@@ -36,15 +36,18 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
 
   const { addCharacter } = useCharacter();
 
-  const handleSubmit = useCallback((data: CreateCharacterFormData) => {
-    const newCharacter = {
-      id,
-      ...data,
-      score: 5,
-    };
+  const handleSubmit = useCallback(
+    (data: CreateCharacterFormData) => {
+      const newCharacter = {
+        id,
+        ...data,
+        score: 5,
+      };
 
-    addCharacter(newCharacter);
-  }, []);
+      addCharacter(newCharacter);
+    },
+    [addCharacter, id]
+  );
 
   return (
     <CharacterContainer>
@@ -86,11 +89,6 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
           >
             <ButtonText> SALVAR </ButtonText>
           </Button>
-
-          {/* <PageNum> + </PageNum> */}
-          {/* <ArrowButton>
-            <Icon name="arrow-right" size={24} color="#FFF"/>
-          </ArrowButton> */}
         </CurrentPageContainer>
       </Form>
     </CharacterContainer>

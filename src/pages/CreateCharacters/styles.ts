@@ -42,3 +42,7 @@ export const ButtonText = styled.Text`
   font-size: 24px;
   text-align: center;
 `;
+
+export const HorizontalView = styled.View`
+  flex-direction: row;
+`;

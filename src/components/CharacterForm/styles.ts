@@ -2,11 +2,11 @@ import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 export const CharacterContainer = styled.View`
-  margin-top: 30px;
-  margin-left: 30px;
-  margin-right: 30px;
-  width: 340px;
-  height: 540px;
+  margin-top: 24px;
+  margin-left: 32px;
+  margin-right: 32px;
+  width: 344px;
+  height: 560px;
   background: #1abc9c;
   border: 1.5px solid #fff;
   border-radius: 19px;
