@@ -1,24 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import {
   CharacterContainer,
   ScoreContainer,
   ScoreTitle,
   ScoreText,
+  CharacterNameContainer,
   CharacterName,
-  HintsTitle,
   HintContainer,
   HintText,
-  Line,
   Hints,
-  HintSquare,
   HintNum,
   ButtonsGroup,
   Button,
   Icon,
+  Line,
 } from './styles';
 
 import { useCharacter } from '../../hooks/character';
+import HintSquare from '../HintSquare';
 
 interface Character {
   id: number;
@@ -35,15 +35,16 @@ interface Props {
 }
 
 const Character: React.FC<Props> = ({ character }) => {
+  const [showScore, setShowScore] = useState(false);
+
+  const [localScore, setLocalScore] = useState(6);
+
+  const [showCharacterName, setShowCharacterName] = useState(false);
   const [showHint1, setShowHint1] = useState(false);
   const [showHint2, setShowHint2] = useState(false);
   const [showHint3, setShowHint3] = useState(false);
   const [showHint4, setShowHint4] = useState(false);
   const [showHint5, setShowHint5] = useState(false);
-  const [showScore, setShowScore] = useState(false);
-
-  const [localScore, setLocalScore] = useState(6);
-
   const { setScore } = useCharacter();
 
   const handleHintPress = useCallback((hintNum: number) => {
@@ -66,116 +67,98 @@ const Character: React.FC<Props> = ({ character }) => {
       default:
         break;
     }
-    setLocalScore(state => state - 1);
-  }, [])
+
+    setLocalScore((state) => state - 1);
+  }, []);
 
   const handleWrongPress = useCallback(async () => {
     setLocalScore(0);
     await setScore(0, character.id);
     setShowScore(true);
-  }, []);
+  }, [character.id, setScore]);
 
   const handleRightPress = useCallback(async () => {
     await setScore(localScore, character.id);
     setShowScore(true);
-  }, [localScore]);
+  }, [localScore, character.id, setScore]);
+
+  const toggleShowCharacterName = useCallback(() => {
+    setShowCharacterName(!showCharacterName);
+  }, [showCharacterName]);
 
   return (
     <CharacterContainer>
+      {showScore ? (
+        <ScoreContainer>
+          <ScoreTitle>{character.characterName}</ScoreTitle>
+          <ScoreText>{localScore}pts</ScoreText>
+        </ScoreContainer>
+      ) : (
+        <>
+          <CharacterNameContainer onPress={toggleShowCharacterName}>
+            {showCharacterName ? (
+              <>
+                <Icon name="eye-off" size={24} color="#FFF" />
+                <CharacterName>{character.characterName}</CharacterName>
+              </>
+            ) : (
+              <>
+                <Icon name="eye" size={24} color="#FFF" />
+                <Line />
+              </>
+            )}
+          </CharacterNameContainer>
 
-      {
-        showScore ? (
+          <Hints>
+            <HintContainer onPress={() => handleHintPress(1)}>
+              <HintText>{character.hint1}</HintText>
+              <HintSquare hintPressed={showHint1}>
+                <HintNum>1</HintNum>
+              </HintSquare>
+            </HintContainer>
 
-          <ScoreContainer>
-            <ScoreTitle>PONTOS</ScoreTitle>
-            <ScoreText>{localScore}</ScoreText>
-          </ScoreContainer>
-        )
-          :
-          (
-            <>
-              <CharacterName>{character.characterName}</CharacterName>
+            <HintContainer onPress={() => handleHintPress(2)}>
+              <HintText>{character.hint2}</HintText>
+              <HintSquare hintPressed={showHint2}>
+                <HintNum>2</HintNum>
+              </HintSquare>
+            </HintContainer>
 
-              <HintsTitle>DICAS</HintsTitle>
+            <HintContainer onPress={() => handleHintPress(3)}>
+              <HintText>{character.hint3}</HintText>
+              <HintSquare hintPressed={showHint3}>
+                <HintNum>3</HintNum>
+              </HintSquare>
+            </HintContainer>
 
-              {showHint1 && (
-                <HintContainer>
-                  <HintText>1 - {character.hint1}</HintText>
-                  <Line />
-                </HintContainer>
-              )}
-              {showHint2 && (
-                <HintContainer>
-                  <HintText>2 - {character.hint2}</HintText>
-                  <Line />
-                </HintContainer>
-              )}
-              {showHint3 && (
-                <HintContainer>
-                  <HintText>3 - {character.hint3}</HintText>
-                  <Line />
-                </HintContainer>
-              )}
-              {showHint4 && (
-                <HintContainer>
-                  <HintText>4 - {character.hint4}</HintText>
-                  <Line />
-                </HintContainer>
-              )}
-              {showHint5 && (
-                <HintContainer>
-                  <HintText>5 - {character.hint5}</HintText>
-                  <Line />
-                </HintContainer>
-              )}
+            <HintContainer onPress={() => handleHintPress(4)}>
+              <HintText>{character.hint4}</HintText>
+              <HintSquare hintPressed={showHint4}>
+                <HintNum>4</HintNum>
+              </HintSquare>
+            </HintContainer>
 
-              <Hints>
-                {!showHint1 && (
-                  <HintSquare onPress={() => handleHintPress(1)}>
-                    <HintNum>1</HintNum>
-                  </HintSquare>
-                )}
-                {!showHint2 && (
-                  <HintSquare onPress={() => handleHintPress(2)}>
-                    <HintNum>2</HintNum>
-                  </HintSquare>
-                )}
-                {!showHint3 && (
-                  <HintSquare onPress={() => handleHintPress(3)}>
-                    <HintNum>3</HintNum>
-                  </HintSquare>
-                )}
-                {!showHint4 && (
-                  <HintSquare onPress={() => handleHintPress(4)}>
-                    <HintNum>4</HintNum>
-                  </HintSquare>
-                )}
-                {!showHint5 && (
-                  <HintSquare onPress={() => handleHintPress(5)}>
-                    <HintNum>5</HintNum>
-                  </HintSquare>
-                )}
+            <HintContainer onPress={() => handleHintPress(5)}>
+              <HintText>{character.hint5}</HintText>
+              <HintSquare hintPressed={showHint5}>
+                <HintNum>5</HintNum>
+              </HintSquare>
+            </HintContainer>
+          </Hints>
 
-              </Hints>
+          <ButtonsGroup>
+            <Button onPress={handleWrongPress}>
+              <Icon name="x" size={64} color="#FFF" />
+            </Button>
 
-              <ButtonsGroup>
-                <Button onPress={handleWrongPress}>
-                  <Icon name="x" size={64} color="#FFF" />
-                </Button>
-
-                <Button onPress={handleRightPress}>
-                  <Icon name="check" size={64} color="#FFF" />
-                </Button>
-              </ButtonsGroup>
-            </>
-          )
-      }
-
-
-
-
+            <Button onPress={handleRightPress}>
+              <Icon name="check" size={64} color="#FFF" />
+            </Button>
+          </ButtonsGroup>
+        </>
+      )}
     </CharacterContainer>
   );
-}
+};
 
 export default Character;
