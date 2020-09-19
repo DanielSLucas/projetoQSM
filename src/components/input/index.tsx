@@ -43,6 +43,7 @@ const Input: React.FC<InputProps> = ({ name, dashed = false, ...rest }) => {
   return (
     <Container style={{ borderStyle: 'dotted' }}>
       <TextInput
+        centered={dashed}
         ref={inputElementRef}
         defaultValue={defaultValue}
         onChangeText={(value) => {

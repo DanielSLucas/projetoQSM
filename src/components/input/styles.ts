@@ -1,15 +1,26 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+
+interface TextInputProps {
+  centered: boolean;
+}
 
 export const Container = styled.View`
   height: 45px;
   width: 240px;
 `;
 
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput<TextInputProps>`
   color: #fff;
   font-size: 18px;
   font-family: 'Roboto-Bold';
   padding: 0;
+
+  ${(props) =>
+    props.centered &&
+    css`
+      text-align: center;
+      font-size: 24px;
+    `}
 `;
 
 export const Line = styled.View`
