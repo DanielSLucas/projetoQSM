@@ -44,14 +44,14 @@ export const CharacterScore = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  width: 250px;
+  width: 256px;
   height: 64px;
   margin: 10px;
   margin-top: 80px;
 
   background: #1abc9c;
   border: 1.5px solid #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 
   justify-content: center;
   align-items: center;
