@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ScrollView } from 'react-native';
-import Swiper from 'react-native-swiper';
+import { Dimensions, ScrollView, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -16,7 +15,7 @@ import CharacterForm from '../../components/CharacterForm';
 const CreateCharacters: React.FC = () => {
   const navigation = useNavigation();
 
-  const [characters, setCharacters] = useState([1, 2]);
+  const [characters, setCharacters] = useState([1]);
 
   const handlePress = useCallback(() => {
     navigation.navigate('Game');
@@ -29,7 +28,14 @@ const CreateCharacters: React.FC = () => {
 
   const characterFormArray = useMemo(() => {
     return characters.map((character) => (
-      <CharacterForm key={character} id={character} />
+      <View
+        key={character}
+        style={{
+          width: Dimensions.get('window').width,
+        }}
+      >
+        <CharacterForm id={character} />
+      </View>
     ));
   }, [characters]);
 
@@ -37,29 +43,11 @@ const CreateCharacters: React.FC = () => {
     <Container>
       <ScrollView style={{ flex: 1 }}>
         <ScreenTitle>CRIAÇÃO DE PERSONAGENS</ScreenTitle>
-        <Swiper
-          loop={false}
-          paginationStyle={{ bottom: 16 }}
-          dotColor="#FFF"
-          dotStyle={{ opacity: 0.4 }}
-          activeDotColor="#FFF"
-          style={{ height: 630 }}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
         >
-          {/* {characterFormArray} */}
-          <CharacterForm id={1} />
-          <CharacterForm id={2} />
-          <CharacterForm id={3} />
-          <ButtonsContainer>
-            <Button onPress={handleAddCharacter}>
-              <ButtonText>+ personagem</ButtonText>
-            </Button>
-
-            <Button onPress={handlePress}>
-              <ButtonText>Jogar</ButtonText>
-            </Button>
-          </ButtonsContainer>
-        </Swiper>
-        {/* <ScrollView horizontal>
           {characterFormArray}
 
           <ButtonsContainer>
@@ -71,7 +59,7 @@ const CreateCharacters: React.FC = () => {
               <ButtonText>Jogar</ButtonText>
             </Button>
           </ButtonsContainer>
-        </ScrollView> */}
+        </ScrollView>
       </ScrollView>
     </Container>
   );
