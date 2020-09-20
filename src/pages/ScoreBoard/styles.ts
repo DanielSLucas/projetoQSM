@@ -10,7 +10,7 @@ export const ScreenTitle = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 48px;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-top: 0px;
 `;
 
@@ -18,7 +18,7 @@ export const ScoreText = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 124px;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-top: 20px;
 `;
 
@@ -31,14 +31,14 @@ export const ScoreDetailsText = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 22px;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-bottom: 10px;
 `;
 
 export const CharacterScore = styled.Text`
   font-family: 'Roboto-Bold';
   font-size: 24px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin: 5px;
   text-align: center;
 `;
@@ -49,8 +49,8 @@ export const Button = styled.TouchableOpacity`
   margin: 10px;
   margin-top: 80px;
 
-  background: #1abc9c;
-  border: 1.5px solid #fff;
+  background: ${(props) => props.theme.colors.primary};
+  border: 1.5px solid ${(props) => props.theme.colors.text};
   border-radius: 8px;
 
   justify-content: center;
@@ -58,7 +58,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-family: 'RubikMonoOne-Regular';
   font-size: 20px;
   text-align: center;

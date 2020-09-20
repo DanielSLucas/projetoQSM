@@ -1,5 +1,6 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 
+import { ThemeContext } from 'styled-components/native';
 import {
   CharacterContainer,
   ScoreContainer,
@@ -35,6 +36,7 @@ interface Props {
 }
 
 const Character: React.FC<Props> = ({ character }) => {
+  const { colors } = useContext(ThemeContext);
   const [showScore, setShowScore] = useState(false);
 
   const [localScore, setLocalScore] = useState(6);
@@ -98,12 +100,12 @@ const Character: React.FC<Props> = ({ character }) => {
           <CharacterNameContainer onPress={toggleShowCharacterName}>
             {showCharacterName ? (
               <>
-                <Icon name="eye-off" size={24} color="#FFF" />
+                <Icon name="eye-off" size={24} color={colors.text} />
                 <CharacterName>{character.characterName}</CharacterName>
               </>
             ) : (
               <>
-                <Icon name="eye" size={24} color="#FFF" />
+                <Icon name="eye" size={24} color={colors.text} />
                 <Line />
               </>
             )}
@@ -148,11 +150,11 @@ const Character: React.FC<Props> = ({ character }) => {
 
           <ButtonsGroup>
             <Button onPress={handleWrongPress}>
-              <Icon name="x" size={64} color="#FFF" />
+              <Icon name="x" size={64} color={colors.text} />
             </Button>
 
             <Button onPress={handleRightPress}>
-              <Icon name="check" size={64} color="#FFF" />
+              <Icon name="check" size={64} color={colors.text} />
             </Button>
           </ButtonsGroup>
         </>

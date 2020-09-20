@@ -10,7 +10,7 @@ export const ScreenTitle = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 36px;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-top: 20px;
 `;
 
@@ -28,8 +28,8 @@ export const Button = styled.TouchableOpacity`
   height: 64px;
   margin: 10px;
 
-  background: #1abc9c;
-  border: 1.5px solid #fff;
+  background: ${(props) => props.theme.colors.primary};
+  border: 1.5px solid ${(props) => props.theme.colors.text};
   border-radius: 16px;
 
   justify-content: center;
@@ -37,7 +37,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
   text-align: center;

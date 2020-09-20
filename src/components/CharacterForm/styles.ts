@@ -7,8 +7,8 @@ export const CharacterContainer = styled.View`
   margin-right: 32px;
   width: 344px;
   height: 560px;
-  background: #1abc9c;
-  border: 1.5px solid #fff;
+  background: ${(props) => props.theme.colors.primary};
+  border: 1.5px solid ${(props) => props.theme.colors.text};
   border-radius: 19px;
 
   justify-content: center;
@@ -19,7 +19,7 @@ export const CharacterContainer = styled.View`
 export const CharacterNum = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   text-align: center;
 `;
 
@@ -35,7 +35,7 @@ export const Hints = styled.View``;
 export const HintsTitle = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-top: 18px;
   margin-bottom: 16px;
   text-align: center;
@@ -49,7 +49,7 @@ export const Hint = styled.View`
 export const HintNum = styled.Text`
   font-family: 'Roboto-Bold';
   font-size: 22px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text}; ;
 `;
 
 export const CurrentPageContainer = styled.View`
@@ -64,7 +64,7 @@ export const ArrowButton = styled.TouchableOpacity``;
 export const PageNum = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text}; ;
 `;
 
 export const Icon = styled(FeatherIcon)``;
@@ -72,7 +72,7 @@ export const Icon = styled(FeatherIcon)``;
 export const Button = styled.TouchableOpacity``;
 
 export const ButtonText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
 `;

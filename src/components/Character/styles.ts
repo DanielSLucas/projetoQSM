@@ -20,7 +20,7 @@ export const ScoreTitle = styled.Text`
   font-family: 'Roboto-Bold';
   font-size: 36px;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-top: 0px;
 `;
 
@@ -28,7 +28,7 @@ export const ScoreText = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 36px;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   margin-top: 16px;
 `;
 
@@ -39,7 +39,7 @@ export const CharacterNameContainer = styled.TouchableOpacity`
 `;
 
 export const CharacterName = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-size: 24px;
   font-family: 'Roboto-Bold';
   margin-top: 32px;
@@ -54,7 +54,7 @@ export const HintContainer = styled.TouchableOpacity`
 `;
 
 export const HintText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-size: 18px;
   font-family: 'Roboto-Bold';
   padding: 0;
@@ -66,7 +66,7 @@ export const HintText = styled.Text`
 export const Line = styled.View`
   height: 1px;
   width: 100px;
-  background: #fff;
+  background: ${(props) => props.theme.colors.text};
   margin-top: 47.5px;
   margin-bottom: 45.5px;
   margin-left: 12px;
@@ -81,8 +81,8 @@ export const HintSquare = styled.View`
   left: 0;
   height: 64px;
   width: 344px;
-  background: #1abc9c;
-  border: 1.5px solid #fff;
+  background: ${(props) => props.theme.colors.primary};
+  border: 1.5px solid ${(props) => props.theme.colors.text};
   border-radius: 8px;
 
   margin: 8px 0;
@@ -92,7 +92,7 @@ export const HintSquare = styled.View`
 `;
 
 export const HintNum = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-size: 36px;
   font-family: 'RubikMonoOne-Regular';
 `;

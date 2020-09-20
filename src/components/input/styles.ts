@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const TextInput = styled.TextInput<TextInputProps>`
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   font-size: 18px;
   font-family: 'Roboto-Bold';
   padding: 0;
@@ -26,7 +26,7 @@ export const TextInput = styled.TextInput<TextInputProps>`
 export const Line = styled.View`
   height: 1px;
   width: 230px;
-  background: #fff;
+  background: ${(props) => props.theme.colors.text};
 `;
 
 export const DashedLineContainer = styled.View`
@@ -38,5 +38,5 @@ export const DashedLineContainer = styled.View`
 export const LittleLine = styled.View`
   height: 1px;
   width: 16px;
-  background: #fff;
+  background: ${(props) => props.theme.colors.text};
 `;

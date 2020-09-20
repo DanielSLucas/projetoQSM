@@ -1,27 +1,39 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 
-import { View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+
+import { ThemeProvider } from 'styled-components/native';
 
 import AppProvider from './hooks';
 
 import Routes from './routes';
+import BackgroundView from './components/BackgroundView';
+
+import defaultTheme from './styles/themes/defaultTheme';
+import lightTheme from './styles/themes/lightTheme';
 
 const App: React.FC = () => {
+  const [theme, setTheme] = useState(defaultTheme);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(theme.title === 'default' ? lightTheme : defaultTheme);
+  }, [theme.title]);
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#0B8F82" />
-      <AppProvider>
-        <View style={{ flex: 1, backgroundColor: '#0B8F82' }}>
-          <Routes />
-        </View>
-      </AppProvider>
+      <ThemeProvider theme={theme}>
+        <AppProvider>
+          <BackgroundView toggleTheme={toggleTheme}>
+            <Routes />
+          </BackgroundView>
+        </AppProvider>
+      </ThemeProvider>
     </NavigationContainer>
   );
 };
