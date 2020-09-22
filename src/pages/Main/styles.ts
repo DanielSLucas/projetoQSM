@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 
 export const Container = styled.View`
   flex: 1;
@@ -24,3 +25,12 @@ export const ButtonText = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
 `;
+
+export const ThemeSwitcherButton = styled.TouchableOpacity`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+`;
+
+export const Icon = styled(FeatherIcon)``;

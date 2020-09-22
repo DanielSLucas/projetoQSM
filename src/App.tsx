@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={{ ...theme, toggleTheme }}>
         <AppProvider>
           <BackgroundView toggleTheme={toggleTheme}>
             <Routes />
