@@ -7,24 +7,24 @@ import CreateCharacters from '../pages/CreateCharacters';
 import Game from '../pages/Game';
 import ScoreBoard from '../pages/ScoreBoard';
 
-const Auth = createStackNavigator();
+const Stack = createStackNavigator();
 
-const AuthRoutes: React.FC = () => {
+const Routes: React.FC = () => {
   const { colors } = useContext(ThemeContext);
 
   return (
-    <Auth.Navigator
+    <Stack.Navigator
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: colors.background },
       }}
     >
-      <Auth.Screen name="Main" component={Main} />
-      <Auth.Screen name="CreateCharacters" component={CreateCharacters} />
-      <Auth.Screen name="Game" component={Game} />
-      <Auth.Screen name="ScoreBoard" component={ScoreBoard} />
-    </Auth.Navigator>
+      <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen name="CreateCharacters" component={CreateCharacters} />
+      <Stack.Screen name="Game" component={Game} />
+      <Stack.Screen name="ScoreBoard" component={ScoreBoard} />
+    </Stack.Navigator>
   );
 };
 
-export default AuthRoutes;
+export default Routes;

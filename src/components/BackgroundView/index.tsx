@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
-import { StatusBar, Switch } from 'react-native';
+import React, { useContext, useMemo } from 'react';
+import { StatusBar } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 
 import { Container, Button, Icon } from './styles';
@@ -17,13 +17,13 @@ export const BackgroundView: React.FC<BackgroundViewProps> = ({
   const buttonIcon = useMemo(() => {
     switch (title) {
       case 'default':
-        return <Icon name="sun" size={24} color={colors.text} />;
+        return <Icon name="sun" size={16} color={colors.text} />;
       case 'light':
-        return <Icon name="moon" size={24} color={colors.text} />;
+        return <Icon name="moon" size={16} color={colors.text} />;
       case 'dark':
-        return <Icon name="circle" size={24} color={colors.text} />;
+        return <Icon name="circle" size={16} color={colors.text} />;
       default:
-        return <Icon name="circle" size={24} color={colors.text} />;
+        return <Icon name="circle" size={16} color={colors.text} />;
     }
   }, [title, colors.text]);
 

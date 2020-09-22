@@ -11,8 +11,8 @@ export const Container = styled.View`
 export const Button = styled.TouchableOpacity`
   position: absolute;
   bottom: 8px;
-  left: 8px;
-  z-index: 999;
+  right: 8px;
+  z-index: 2;
 `;
 
 export const Icon = styled(FeatherIcon)``;
