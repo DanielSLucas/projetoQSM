@@ -13,12 +13,26 @@ import BackgroundView from './components/BackgroundView';
 
 import defaultTheme from './styles/themes/defaultTheme';
 import lightTheme from './styles/themes/lightTheme';
+import darkTheme from './styles/themes/darkTheme';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState(defaultTheme);
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme.title === 'default' ? lightTheme : defaultTheme);
+    switch (theme.title) {
+      case 'default':
+        setTheme(lightTheme);
+        break;
+      case 'light':
+        setTheme(darkTheme);
+        break;
+      case 'dark':
+        setTheme(defaultTheme);
+        break;
+      default:
+        setTheme(defaultTheme);
+        break;
+    }
   }, [theme.title]);
 
   useEffect(() => {
