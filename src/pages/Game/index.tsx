@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Dimensions, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -30,10 +30,16 @@ const Game: React.FC = () => {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
+          pagingEnabled
           style={{ flex: 1 }}
         >
           {characters.map((character) => (
-            <Character key={character.id} character={character} />
+            <View
+              key={character.id}
+              style={{ width: Dimensions.get('window').width }}
+            >
+              <Character character={character} />
+            </View>
           ))}
 
           <ButtonsContainer>
