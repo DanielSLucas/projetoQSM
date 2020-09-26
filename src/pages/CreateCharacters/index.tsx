@@ -11,23 +11,25 @@ import {
 } from './styles';
 
 import CharacterForm from '../../components/CharacterForm';
+import { useCharacter } from '../../hooks/character';
 
 const CreateCharacters: React.FC = () => {
   const navigation = useNavigation();
+  const { characters } = useCharacter();
 
-  const [characters, setCharacters] = useState([1]);
+  const [charactersForm, setCharactersForm] = useState([1]);
 
   const handlePress = useCallback(() => {
     navigation.navigate('Game');
   }, [navigation]);
 
   const handleAddCharacter = useCallback(() => {
-    const nextID = characters.length + 1;
-    setCharacters([...characters, nextID]);
-  }, [characters]);
+    const nextID = charactersForm.length + 1;
+    setCharactersForm([...charactersForm, nextID]);
+  }, [charactersForm]);
 
   const characterFormArray = useMemo(() => {
-    return characters.map((character) => (
+    return charactersForm.map((character) => (
       <View
         key={character}
         style={{
@@ -37,7 +39,7 @@ const CreateCharacters: React.FC = () => {
         <CharacterForm id={character} />
       </View>
     ));
-  }, [characters]);
+  }, [charactersForm]);
 
   return (
     <Container>
@@ -55,7 +57,7 @@ const CreateCharacters: React.FC = () => {
               <ButtonText>+ personagem</ButtonText>
             </Button>
 
-            <Button onPress={handlePress}>
+            <Button onPress={handlePress} disabled={!characters}>
               <ButtonText>Jogar</ButtonText>
             </Button>
           </ButtonsContainer>

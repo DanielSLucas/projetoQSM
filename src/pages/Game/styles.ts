@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -34,6 +34,12 @@ export const Button = styled.TouchableOpacity`
 
   justify-content: center;
   align-items: center;
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.3;
+    `}
 `;
 
 export const ButtonText = styled.Text`

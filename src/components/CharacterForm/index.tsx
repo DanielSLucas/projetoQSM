@@ -2,6 +2,10 @@ import React, { useRef, useCallback } from 'react';
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
+
+import { Alert } from 'react-native';
+import getValidationErrors from '../../utils/getValidationErrors';
 import {
   CharacterContainer,
   CharacterNum,
@@ -37,14 +41,48 @@ const CharacterForm: React.FC<Props> = ({ id }) => {
   const { addCharacter } = useCharacter();
 
   const handleSubmit = useCallback(
-    (data: CreateCharacterFormData) => {
-      const newCharacter = {
-        id,
-        ...data,
-        score: 5,
-      };
+    async (data: CreateCharacterFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      addCharacter(newCharacter);
+        const schema = Yup.object().shape({
+          characterName: Yup.string().required('Nome obrigatório'),
+          hint1: Yup.string().required(
+            'Todas as dicas devem estar preenchidas'
+          ),
+          hint2: Yup.string().required(
+            'Todas as dicas devem estar preenchidas'
+          ),
+          hint3: Yup.string().required(
+            'Todas as dicas devem estar preenchidas'
+          ),
+          hint4: Yup.string().required(
+            'Todas as dicas devem estar preenchidas'
+          ),
+          hint5: Yup.string().required(
+            'Todas as dicas devem estar preenchidas'
+          ),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        const newCharacter = {
+          id,
+          ...data,
+          score: 5,
+        };
+
+        addCharacter(newCharacter);
+      } catch (err) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+        Alert.alert(
+          'Erro ao salvar personagem',
+          'Verifique se todos os dados foram preenchidos.'
+        );
+      }
     },
     [addCharacter, id]
   );

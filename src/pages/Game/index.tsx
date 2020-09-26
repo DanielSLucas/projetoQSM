@@ -16,7 +16,7 @@ import { useCharacter } from '../../hooks/character';
 
 const Game: React.FC = () => {
   const navigation = useNavigation();
-  const { characters } = useCharacter();
+  const { characters, score } = useCharacter();
 
   const HandleCalculateScore = useCallback(() => {
     navigation.navigate('ScoreBoard');
@@ -43,7 +43,7 @@ const Game: React.FC = () => {
           ))}
 
           <ButtonsContainer>
-            <Button onPress={HandleCalculateScore}>
+            <Button onPress={HandleCalculateScore} disabled={!score}>
               <ButtonText>PONTUAÇÃO</ButtonText>
             </Button>
           </ButtonsContainer>
