@@ -1,5 +1,8 @@
 import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex: 1;
@@ -8,9 +11,9 @@ export const Container = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-  margin-top: 208px;
-  width: 232px;
-  height: 64px;
+  margin-top: ${height * 0.2739}px;
+  width: ${width * 0.59}px;
+  height: ${height * 0.0842}px;
 
   background: ${(props) => props.theme.colors.primary};
   border: 1.5px solid ${(props) => props.theme.colors.text};
@@ -28,8 +31,8 @@ export const ButtonText = styled.Text`
 
 export const ThemeSwitcherButton = styled.TouchableOpacity`
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: ${height * 0.02107}px;
+  right: ${width * 0.04074}px;
   z-index: 2;
 `;
 

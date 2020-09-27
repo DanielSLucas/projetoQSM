@@ -1,12 +1,15 @@
 import styled, { css } from 'styled-components/native';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 interface TextInputProps {
   centered: boolean;
 }
 
 export const Container = styled.View`
-  height: 45px;
-  width: 240px;
+  height: ${height * 0.05926}px;
+  width: ${width * 0.6111}px;
 `;
 
 export const TextInput = styled.TextInput<TextInputProps>`
@@ -25,7 +28,7 @@ export const TextInput = styled.TextInput<TextInputProps>`
 
 export const Line = styled.View`
   height: 1px;
-  width: 230px;
+  width: ${width * 0.5856}px;
   background: ${(props) => props.theme.colors.text};
 `;
 
@@ -37,6 +40,6 @@ export const DashedLineContainer = styled.View`
 
 export const LittleLine = styled.View`
   height: 1px;
-  width: 16px;
+  width: ${width * 0.04447}px;
   background: ${(props) => props.theme.colors.text};
 `;

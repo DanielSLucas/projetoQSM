@@ -1,15 +1,17 @@
 import styled from 'styled-components/native';
-import FeatherIcon from 'react-native-vector-icons/Feather';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export const CharacterContainer = styled.View`
-  margin-top: 24px;
-  margin-left: 32px;
-  margin-right: 32px;
-  width: 344px;
-  height: 560px;
+  margin-top: ${height * 0.0316}px;
+  margin-left: auto;
+  margin-right: auto;
+  width: ${width * 0.8759}px;
+  height: ${height * 0.7375}px;
   background: ${(props) => props.theme.colors.primary};
   border: 1.5px solid ${(props) => props.theme.colors.text};
-  border-radius: 19px;
+  border-radius: 16px;
 
   justify-content: center;
   align-items: center;
@@ -26,8 +28,11 @@ export const CharacterNum = styled.Text`
 export const CharacterName = styled.View`
   justify-content: center;
   align-items: center;
-  margin: 48px auto 16px auto;
-  width: 250px;
+  margin-top: ${height * 0.0632}px;
+  margin-right: auto;
+  margin-bottom: ${height * 0.02107}px;
+  margin-left: auto;
+  width: ${width * 0.6365}px;
 `;
 
 export const Hints = styled.View``;
@@ -36,8 +41,8 @@ export const HintsTitle = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
   color: ${(props) => props.theme.colors.text};
-  margin-top: 18px;
-  margin-bottom: 16px;
+  margin-top: ${height * 0.0237}px;
+  margin-bottom: ${height * 0.02107}px;
   text-align: center;
 `;
 
@@ -55,19 +60,17 @@ export const HintNum = styled.Text`
 export const CurrentPageContainer = styled.View`
   flex-direction: row;
   justify-content: center;
-  margin: 52px;
-  margin-bottom: -20px;
+  margin-top: ${height * 0.0684}px;
+  margin-right: ${width * 0.1324}px;
+  margin-bottom: -${height * 0.0263}px;
+  margin-left: ${width * 0.1324}px;
 `;
-
-export const ArrowButton = styled.TouchableOpacity``;
 
 export const PageNum = styled.Text`
   font-family: 'RubikMonoOne-Regular';
   font-size: 24px;
   color: ${(props) => props.theme.colors.text}; ;
 `;
-
-export const Icon = styled(FeatherIcon)``;
 
 export const Button = styled.TouchableOpacity``;
 

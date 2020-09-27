@@ -1,4 +1,7 @@
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex: 1;
@@ -19,12 +22,15 @@ export const ScoreText = styled.Text`
   font-size: 124px;
   text-align: center;
   color: ${(props) => props.theme.colors.text};
-  margin-top: 20px;
+  margin-top: ${height * 0.02634}px;
 `;
 
 export const ScoreDetails = styled.View`
-  margin: 30px;
-  width: 320px;
+  margin-top: ${height * 0.03951}px;
+  margin-right: ${width * 0.07639}px;
+  margin-bottom: ${height * 0.03951}px;
+  margin-left: ${width * 0.07639}px;
+  width: ${width * 0.8148299042574862}px;
 `;
 
 export const ScoreDetailsText = styled.Text`
@@ -32,22 +38,28 @@ export const ScoreDetailsText = styled.Text`
   font-size: 22px;
   text-align: center;
   color: ${(props) => props.theme.colors.text};
-  margin-bottom: 10px;
+  margin-bottom: ${height * 0.01317}px;
 `;
 
 export const CharacterScore = styled.Text`
   font-family: 'Roboto-Bold';
   font-size: 24px;
   color: ${(props) => props.theme.colors.text};
-  margin: 5px;
+  margin-top: ${height * 0.006585}px;
+  margin-right: ${width * 0.01273}px;
+  margin-bottom: ${height * 0.006585}px;
+  margin-left: ${width * 0.01273}px;
   text-align: center;
 `;
 
 export const Button = styled.TouchableOpacity`
-  width: 256px;
-  height: 64px;
-  margin: 10px;
-  margin-top: 80px;
+  width: ${width * 0.6518}px;
+  height: ${height * 0.08429}px;
+
+  margin-top: ${height * 0.1053}px;
+  margin-right: ${width * 0.02546}px;
+  margin-bottom: ${height * 0.01317}px;
+  margin-left: ${width * 0.02546}px;
 
   background: ${(props) => props.theme.colors.primary};
   border: 1.5px solid ${(props) => props.theme.colors.text};

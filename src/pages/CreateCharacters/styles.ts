@@ -1,4 +1,7 @@
 import styled, { css } from 'styled-components/native';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex: 1;
@@ -11,22 +14,25 @@ export const ScreenTitle = styled.Text`
   font-size: 36px;
   text-align: center;
   color: ${(props) => props.theme.colors.text};
-  margin-top: 20px;
+  margin-top: ${height * 0.0263}px;
 `;
 
 export const ButtonsContainer = styled.View`
   margin: auto;
-  margin-left: 30px;
-  margin-right: 30px;
-  width: 340px;
+  margin-left: ${width * 0.07639}px;
+  margin-right: ${width * 0.07639}px;
+  width: ${width * 0.865756}px;
   justify-content: center;
   align-items: center;
 `;
 
 export const Button = styled.TouchableOpacity`
-  width: 320px;
-  height: 64px;
-  margin: 10px;
+  width: ${width * 0.81482}px;
+  height: ${height * 0.08429149051062204}px;
+  margin-top: ${height * 0.0131}px;
+  margin-right: ${width * 0.0254}px;
+  margin-bottom: ${height * 0.0131}px;
+  margin-left: ${width * 0.0254}px;
 
   background: ${(props) => props.theme.colors.primary};
   border: 1.5px solid ${(props) => props.theme.colors.text};
